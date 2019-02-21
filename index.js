@@ -230,7 +230,7 @@ function compile (type) {
 
 function typeforce (type, value, strict, surrogate) {
   if (!NATIVE.Buffer(type) && NATIVE.Function(type)) {
-    if (type(value, strict)) return true
+    if (type(value, strict) || !strict) return true
 
     throw new TfTypeError(surrogate || type, value)
   }
